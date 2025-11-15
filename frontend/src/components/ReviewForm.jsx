@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { SERVER } from '../constant';
 const ReviewForm = ({ movieId, onReviewSuccess }) => { 
   const [user, setUser] = useState('');
   const [rating, setRating] = useState(5);
@@ -34,7 +34,8 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
         rating: Number(rating),
         comment
       };
-      await axios.post('http://localhost:8000/api/review', payload); 
+      
+      await axios.post(`${SERVER}/api/review`, payload);  
       setComment('');
       setRating(5); 
       if (onReviewSuccess) {

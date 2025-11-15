@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import ReviewForm from '../components/ReviewForm';
 import ReviewCard from '../components/ReviewCard';
 import { Star, Clapperboard, Calendar } from 'lucide-react';
+import { SERVER } from '../constant';
 
 const MovieDetail = () => {
   const { id } = useParams();  
@@ -14,8 +15,9 @@ const MovieDetail = () => {
 
   const fetchMovieData = useCallback(async () => {
     try {
-      setLoading(true); 
-      const res = await axios.get(`http://localhost:8000/api/movie/${id}`);
+      setLoading(true);  
+      const res = await axios.get(`${SERVER}/api/movie/${id}`);
+      
       console.log(res)
       setMovie(res.data);
       

@@ -17,9 +17,8 @@ const Home = () => {
       try {
         setLoading(true);
         setError(null);
-        
-        const res = await axios.get(`http://localhost:8000/api/movie`);
-        
+         
+        const res = await axios.get(`${SERVER}/api/movie`);
         console.log(res)
         setMovies(res.data);
 

@@ -7,7 +7,7 @@ import connectDb from "./config/db.js";
 import seedDB from "./seed.js";
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','https://movie-review-aggregator.vercel.app'],
     credentials: true,
 }));
 
