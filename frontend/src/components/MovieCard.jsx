@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 
 const MovieCard = ({ movie }) => {
   
-  const rating = movie.avgRating ? movie.avgRating.toFixed(1) : 'N/A';
+  const rating = movie.averageRating ? movie.averageRating.toFixed(1) : 'N/A';
 
   return (
     <Link 

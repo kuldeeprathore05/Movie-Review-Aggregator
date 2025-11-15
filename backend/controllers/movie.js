@@ -1,42 +1,80 @@
 import Movie from "../models/movies.js";
 import mongoose from "mongoose";
 
-export const getMovies = async(req,res)=>{
-    try {
-        const movies = await Movie.aggregate([
-            {
-                $lookup:{
-                    from:'reviews',
-                    localField:'_id',
-                    foreignField:'movieId',
-                    as:'reviews'
-                } 
-            },
-            {
-                $addFields:{
-                    avgRating : {$avg:'$reviews.rating'},
-                    reviewCount : {$size:'$reviews'}
-                },
-            },
-            {
-                $project:{
-                    title: 1,
-                    genre: 1,
-                    releaseYear: 1,
-                    avgRating: 1,  
-                    reviewCount: 1,
-                    posterUrl:1,
-                }
-            },
-            {
-                $sort: { avgRating: -1 }
-            }
-        ])
-        res.status(200).json(movies);
-    } catch (error) {
-        console.log('Server Error',error);
-    }
-}
+export const getMovies = async (req, res, next) => {
+  try {
+    const page = Number(req.query.page) || 1; 
+    const limit = Number(req.query.limit) || 8; 
+    const skip = (page - 1) * limit; 
+    const searchQuery = req.query.search || ''; 
+    const matchQuery = {};
+    if (searchQuery) {
+      matchQuery.title = { 
+        $regex: searchQuery,  
+        $options: 'i'    
+      };
+    } 
+
+    const results = await Movie.aggregate([
+      { 
+        $match: matchQuery
+      },
+      { 
+        $lookup: {
+          from: 'reviews',
+          localField: '_id',
+          foreignField: 'movieId',
+          as: 'reviews',
+        },
+      },
+      { 
+        $addFields: {
+          averageRating: { $avg: '$reviews.rating' },
+          reviewCount: { $size: '$reviews' },
+        },
+      },
+      { 
+         $project: {
+          title: 1,
+          genre: 1,
+          releaseYear: 1,
+          posterUrl: 1,
+          description: 1,
+          averageRating: 1, 
+          reviewCount: 1,   
+        },
+      },
+      { 
+        $sort: { averageRating: -1, releaseYear: -1 }
+      },
+      { 
+        $facet: {
+          movies: [
+            { $skip: skip },
+            { $limit: limit }
+          ],
+          paginationInfo: [   
+            { $count: 'totalMovies' }
+          ]
+        }
+      }
+    ]);
+
+    const movies = results[0].movies;
+    const totalMovies = results[0].paginationInfo[0] ? results[0].paginationInfo[0].totalMovies : 0;
+    const totalPages = Math.ceil(totalMovies / limit);
+
+    res.status(200).json({
+      movies,
+      page,
+      totalPages,
+      totalMovies
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const getMovieById = async(req,res)=>{
     try {
