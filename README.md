@@ -16,9 +16,4 @@ The app functions as a **movie review aggregator**, allowing users to browse mov
 - Fast development using **Vite**
 - Modern UI styled with **Tailwind CSS**
 - **Lazy Loading** using `React.lazy()` + `Suspense` on the movie detail page  
-
-### 👤 Guest Review System
-- Users can submit reviews as “guests”
-- LocalStorage remembers guest name (no full authentication required)
-
 ---
