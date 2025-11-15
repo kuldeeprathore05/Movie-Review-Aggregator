@@ -1,0 +1,24 @@
+@import "tailwindcss";
+ 
+@layer base {
+  body {
+    /* 1. Set text color and font */
+    @apply text-gray-100 antialiased font-sans;
+    
+    /* 2. Set a fallback background color */
+    background-color: #111827; /* This is bg-gray-900 */
+    
+    /* 3. Add a layered background image with a dark overlay */
+    background-image: 
+      /* This is a 95% opaque overlay using our original bg-gray-900 color */
+      linear-gradient(rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.88)),
+      /* This is the background image */
+      url('https://t4.ftcdn.net/jpg/02/71/50/69/360_F_271506927_WWFfd92jDIIDx6DgMflakU14o5jRPgBm.jpg');
+    
+    /* 4. Control the background image properties */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* This makes the image stay in place while scrolling */
+    background-repeat: no-repeat;
+  }
+}
