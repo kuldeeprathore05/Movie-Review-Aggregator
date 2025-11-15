@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from '../components/MovieCard'; // Correct path
 import Loader from '../components/Loader'; // Correct path
-
-const Home = () => {
-  // State for the list of movies
-  const [movies, setMovies] = useState([]);
-  
-  // State for loading and errors
+import { SERVER } from '../constant';
+const Home = () => { 
+  const [movies, setMovies] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // useEffect to fetch movies when the component mounts
+ 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
