@@ -4,6 +4,16 @@ This is a simple full-stack **MERN** application built for a technical assessmen
 The app functions as a **movie review aggregator**, allowing users to browse movies, view average ratings, and submit their own reviews.
 
 ---
+## 🚀 Live Deployment
+
+| Component | Service | Status | Link |
+| :--- | :--- | :--- | :--- |
+| **Frontend** | Netlify | 🟢 Live | [**Click here to view App**](https://transcendent-naiad-794d10.netlify.app/) |
+| **Backend** | Render | 🟠 Active | [API Health Check](https://movie-review-aggregator-elwz.onrender.com/api/movie) |
+
+> **⚠️ Note on Backend:** The API is hosted on Render's **Free Tier**. If the app takes a moment to load data initially, it is likely due to the server "waking up" (Cold Start). Subsequent requests will be instant.
+
+---
 
 ## ⭐ Core Features
 
