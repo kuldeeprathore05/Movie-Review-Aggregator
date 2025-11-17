@@ -7,7 +7,7 @@ import connectDb from "./config/db.js";
 import seedDB from "./seed.js";
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173','https://movie-review-agt.vercel.app'],
+    origin: ['http://localhost:5173','https://movie-review-agt.vercel.app','https://transcendent-naiad-794d10.netlify.app'],
     credentials: true,
 }));
 
