@@ -4,6 +4,12 @@ This is a simple full-stack **MERN** application built for a technical assessmen
 The app functions as a **movie review aggregator**, allowing users to browse movies, view average ratings, and submit their own reviews.
 
 ---
+## 🎥 Project Demo
+Here is a walkthrough of the application features:
+
+https://github.com/user-attachments/assets/ef62382a-fee9-485f-bea2-aae47af31a2e
+
+
 ## 🚀 Live Deployment
 
 | Component | Service | Status | Link |
