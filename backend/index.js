@@ -17,7 +17,7 @@ await connectDb();
 // await seedDB();
 app.use('/api/movie',movieRoutes); 
 app.use('/api/review',reviewRoutes); 
-const PORT = 8000;
+const PORT = process.env.PORT|| 8000;
 
 app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`)
